@@ -19,7 +19,7 @@ var Util = {
 	/**
 	 * Is the device an iPhone
 	 */
-	isiPhone : function() {
+	isIPhone : function() {
 		return Ti.Platform.osname === 'iphone';
 	},
 	
