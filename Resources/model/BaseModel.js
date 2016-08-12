@@ -58,9 +58,3 @@ BaseModel.prototype.PUT = function(data, callback) {
 };
 
 module.exports = BaseModel;
-
-
-
-
-
-
