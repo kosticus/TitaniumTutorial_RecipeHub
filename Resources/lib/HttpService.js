@@ -17,8 +17,9 @@ var RestService = function(url) {
  * @param {String} url
  * @param {Object} sendData
  * @param {Function} callback
+ * @param {UserModel} authentication
  */
-RestService.prototype.httpRequest = function(method, url, sendData, callback) {
+RestService.prototype.httpRequest = function(method, url, sendData, callback, authentication) {
 	var online = Ti.Network.getOnline();
 	if (!online) {
 		alert('This feature requires an internet connection and no active connection is found');
@@ -70,6 +71,12 @@ RestService.prototype.httpRequest = function(method, url, sendData, callback) {
 	client.setTimeout(TIMEOUT);
 	client.setRequestHeader('Connection', 'close');
 	this.lastHTTPClient = client;
+	
+	if (authentication !== null && authentication !== undefined) {
+		var authstr = 'Basic ' + Ti.Utils.base64encode(authentication.email + ":" + authentication.password_hash);
+		authstr = authstr.replace(/(\r\n|\n|\r)/gm,"");
+		client.setRequestHeader('Authentication', authstr);
+	}
 	
 	// open the request
 	client.open(method, url);
