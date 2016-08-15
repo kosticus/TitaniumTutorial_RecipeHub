@@ -74,7 +74,7 @@ RestService.prototype.httpRequest = function(method, url, sendData, callback) {
 	// open the request
 	client.open(method, url);
 	
-	client.setRequestHeader('accept, 'application/json');
+	client.setRequestHeader('accept', 'application/json');
 	client.send(sendData);
 };
 
